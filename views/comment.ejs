@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/comment.css">
+    <link rel="stylesheet" href="/par.css">
+    <title>Comment</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs'); %>
+    <div class="comment-container">
+        <!-- <h1><%= item._id %></h1> -->
+        <div class="top">
+            <div class="t">
+                <div class="postpro"><img src="/img/profile.jpeg" alt=""></div>
+                <div class="name">Harry Puttar</div>
+            </div>
+            <div class="dot">...</div>
+        </div>
+        <% if(image.img.data){%>
+            <img src="data:image/<%=image.img.contentType%>;base64,
+            <%=image.img.data.toString('base64')%>">
+          <% }else{ %>
+            <img src="/imgs/image8.jpg" alt="">
+        <%}%>
+        <div class="postc">
+            <form action="/pcomment" method="post">
+                <input type="text"class="id" name="id" value=<%= item._id %>>
+                <input type="text" name="comment" placeholder="comment">
+                <button type="submit">Post</button>
+            </form>
+        </div>
+        <div class="comments">
+            <div class="comm">
+                <div class="pro">Pro</div>
+                <div class="na">Name</div>
+                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing </div>
+            </div>
+            <% comments.forEach(function(comment) { %>
+                <div class="comm">
+                    <div class="postpro"><img src="/img/profile.jpeg" alt=""></div>
+                    <div class="na">Name</div>
+                    <div class="text"><%= comment %></div>
+                </div>
+            <% }) %>
+            <div class="temp">
+
+            </div>
+        </div>
+
+        <%- include('../partials/footer.ejs'); %>
+    </div>
+</body>
+</html>
